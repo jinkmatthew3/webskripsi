@@ -79,7 +79,7 @@ const Data = (props) => {
     return (
         <Container>
             {hasil &&
-                <p>Halo {hasil.nama} kamu berada di urutan {id} dengan nilai {hasil.nilai}</p>
+                <p>Halo {hasil.nama} kamu berada di urutan {id} dengan nilai {((hasil.nilai)*100).toFixed(2)}%</p>
             }
             <Table>
                 <thead>

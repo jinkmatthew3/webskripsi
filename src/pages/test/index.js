@@ -64,11 +64,16 @@ const Test = (props) => {
         fetchProvinsi();
     }
 
-    const uploadFirebase = async (namaProvinsi, sum) => {
+    const uploadFirebase = async (namaProvinsi, sum, bobotHealthcare, bobotDiseases, bobotEssential, bobotAge, bobotProvinsi) => {
         const db = firebase.firestore();
         const userRef = await db.collection("dataCalonVaksin").add({
             nama: valueNama,
             provinsi: namaProvinsi,
+            nilaiH: bobotHealthcare,
+            nilaiD: bobotDiseases,
+            nilaiE: bobotEssential,
+            nilaiA: bobotAge,
+            nilaiP: bobotProvinsi,
             nilai: sum,
         }).catch((err) => {
             console.log(err);
@@ -114,19 +119,24 @@ const Test = (props) => {
         bobotAge = bobotAge * 0.2772308;
         bobotProvinsi = bobotProvinsi * 0.13777309;
 
-        var sum = bobotHealthcare + bobotEssential + bobotEssential + bobotAge + bobotProvinsi;
+        var sum = bobotHealthcare + bobotDiseases + bobotEssential + bobotAge + bobotProvinsi;
 
         // console.log("Nama kamu ", valueNama);
         // console.log("Provinsi kamu ", namaProvinsi);
         console.log("Nilai kamu", sum);
 
-        const firebase = uploadFirebase(namaProvinsi, sum);
+        const firebase = uploadFirebase(namaProvinsi, sum, bobotHealthcare, bobotDiseases, bobotEssential, bobotAge, bobotProvinsi);
 
         if (firebase) {
             console.log("hai bebeb", idDokumen);
             setHasil({
                 nama: valueNama,
                 provinsi: namaProvinsi,
+                nilaiH: bobotHealthcare,
+                nilaiD: bobotDiseases,
+                nilaiE: bobotEssential,
+                nilaiA: bobotAge,
+                nilaiP: bobotProvinsi,
                 nilai: sum,
             });
         }
