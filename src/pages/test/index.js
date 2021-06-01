@@ -3,13 +3,17 @@ import { Container, Form, Button, Row, Col, OverlayTrigger, Tooltip } from 'reac
 import { Redirect } from "react-router";
 import firebase from '../../firebase'
 import Divider from '@material-ui/core/Divider'
-import { FaQuestionCircle, FaQuestion } from "react-icons/fa";
+import { FaQuestion } from "react-icons/fa";
 
 const SelectProvinsi = (props) => {
     if (props.listProvinsi) {
         console.log("List: ", props.listProvinsi.features);
         return (
-            props.listProvinsi.features.map((data, key) => {
+            props.listProvinsi.features
+            .filter(data => {
+                return data.attributes.Provinsi.toLowerCase().indexOf("indonesia") < 0
+            })
+            .map((data, key) => {
                 return (
                     <option key={key} value={[data.attributes.Kasus_Meni, data.attributes.Provinsi]}>
                         {data.attributes.Provinsi}
@@ -44,7 +48,7 @@ const Test = (props) => {
     const [valueDiseases, setvalueDiseases] = useState();
     const [valueEssential, setvalueEssential] = useState();
     const [valueAge, setvalueAge] = useState();
-    const [provinsi, setProvinsi] = useState(null);
+    const [provinsi, setProvinsi] = useState("432,Aceh");
     const [listProvinsi, setListProvinsi] = useState(null);
 
     //buat pindah halaman
@@ -150,6 +154,7 @@ const Test = (props) => {
             if (maxMeninggal < element.attributes.Kasus_Meni) {
                 maxMeninggal = element.attributes.Kasus_Meni;
             }
+            return true;
         });
     }
 
@@ -185,8 +190,8 @@ const Test = (props) => {
                         <Form.Group style={{ padding: 10 }}>
                             <Form.Label>1. Apakah anda seorang petugas kesehatan ?</Form.Label>
                             <fieldset>
-                                <Form.Group as={Row}>
-                                    <Col sm={10}>
+                                <Form.Group>
+                                    <Col sm={12}>
                                         <Row>
                                             <Col xl="10">
                                                 <Form.Check
@@ -233,7 +238,7 @@ const Test = (props) => {
                                                     type="radio"
                                                     label="Tidak, saya bukan tenaga kesehatan."
                                                     name="formHorizontalRadios1"
-                                                    id="formHorizontalH2"
+                                                    id="formHorizontalH3"
                                                     onChange={() => setvalueHealthcare(1)}
                                                 />
                                             </Col>
@@ -256,7 +261,7 @@ const Test = (props) => {
                             <Form.Label>2. Apakah anda pernah mempunyai atau terjangkit penyakit serius ?</Form.Label>
                             <fieldset>
                                 <Form.Group as={Row}>
-                                    <Col sm={10}>
+                                    <Col sm={12}>
                                         <Row>
                                             <Col xl="10">
                                                 <Form.Check
@@ -328,7 +333,7 @@ const Test = (props) => {
                             <Form.Label>3. Apakah anda pekerja yang dibutuhkan dalam keberlangsungan masyarakat ?</Form.Label>
                             <fieldset>
                                 <Form.Group as={Row}>
-                                    <Col sm={10}>
+                                    <Col sm={12}>
                                         <Row>
                                             <Col xl="10">
                                                 <Form.Check
@@ -399,7 +404,7 @@ const Test = (props) => {
                             <Form.Label>4. Berapakah umur anda ?</Form.Label>
                             <fieldset>
                                 <Form.Group as={Row}>
-                                    <Col sm={10}>
+                                    <Col sm={12}>
                                         <Row>
                                             <Col xl="10">
                                                 <Form.Check

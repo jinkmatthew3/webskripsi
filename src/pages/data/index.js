@@ -28,7 +28,6 @@ const DataTableBody = (props) => {
 const Data = (props) => {
     const [hasil, setHasil] = useState(null);
     const [dataTabel, setDataTabel] = useState([]);
-    const [done, setDone] = useState(false);
     const [id, setId] = useState(null);
 
     const TarikData = async () => {
@@ -45,7 +44,7 @@ const Data = (props) => {
                         provinsi: element.data().provinsi,
                         nilai: element.data().nilai,
                     }
-                    if(hasil && hasil.nama == element.data().nama){
+                    if(hasil && hasil.nama === element.data().nama){
                         setId(temp.id);
                     }
                     temp2.push(temp);
@@ -79,7 +78,7 @@ const Data = (props) => {
     return (
         <Container>
             {hasil &&
-                <p>Halo {hasil.nama} kamu berada di urutan {id} dengan nilai {((hasil.nilai)*100).toFixed(2)}%</p>
+                <p>Halo {hasil.nama} kamu berada di urutan {id} dengan nilai {((hasil.nilai)*100).toFixed(2)}% dengan kriteria Healthcare sebesar {((hasil.nilaiH)*100).toFixed(2)}%, kriteria penyakit sebesar {((hasil.nilaiD)*100).toFixed(2)}%, kriteria pekerjaan essensial sebesar {((hasil.nilaiE)*100).toFixed(2)}%, kriteria umur sebesar {((hasil.nilaiA)*100).toFixed(2)}% dan kriteria provinsi sebesar {((hasil.nilaiP)*100).toFixed(2)}%.</p>
             }
             <Table>
                 <thead>

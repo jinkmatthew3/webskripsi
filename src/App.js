@@ -2,7 +2,6 @@ import { useState } from 'react';
 import './App.css';
 import NavbarComp from './component/navbar';
 import Routes from './routes';
-import firebase from './firebase';
 
 
 function App() {
