@@ -80,10 +80,11 @@ const Data = (props) => {
             {hasil &&
                 <p>Halo {hasil.nama} kamu berada di urutan {id} dengan nilai {((hasil.nilai)*100).toFixed(2)}% dengan kriteria Healthcare sebesar {((hasil.nilaiH)*100).toFixed(2)}%, kriteria penyakit sebesar {((hasil.nilaiD)*100).toFixed(2)}%, kriteria pekerjaan essensial sebesar {((hasil.nilaiE)*100).toFixed(2)}%, kriteria umur sebesar {((hasil.nilaiA)*100).toFixed(2)}% dan kriteria provinsi sebesar {((hasil.nilaiP)*100).toFixed(2)}%.</p>
             }
+            <p>Peringkat yang diberikan merupakan peringkat prioritas pemberian vaksin COVID-19. Nilai tersebut merupakan nilai yang digunakan untuk memberikan peringkat prioritas pemberian vaksin COVID-19 dengan kriteria-kriteria sudah dihitung.</p>
             <Table>
                 <thead>
                     <tr>
-                        <th>No</th>
+                        <th>Peringkat</th>
                         <th>Nama</th>
                         <th>Provinsi</th>
                         <th>Nilai</th>
